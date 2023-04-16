@@ -8,7 +8,7 @@ import type {
 	UmbTreeRepository,
 	UmbDetailRepository,
 	UmbFolderDataSource,
-	UmbDataSource,
+	UmbDetailDataSource,
 } from '@umbraco-cms/backoffice/repository';
 import { UmbControllerHostElement } from '@umbraco-cms/backoffice/controller';
 import { UmbContextConsumerController } from '@umbraco-cms/backoffice/context-api';
@@ -34,7 +34,7 @@ export class UmbDataTypeRepository
 	#host: UmbControllerHostElement;
 
 	#treeSource: UmbTreeDataSource;
-	#detailSource: UmbDataSource<CreateDataTypeRequestModel, UpdateDataTypeRequestModel, DataTypeResponseModel>;
+	#detailSource: UmbDetailDataSource<CreateDataTypeRequestModel, UpdateDataTypeRequestModel, DataTypeResponseModel>;
 	#folderSource: UmbFolderDataSource;
 
 	#detailStore?: UmbDataTypeStore;

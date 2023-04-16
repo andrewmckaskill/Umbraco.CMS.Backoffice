@@ -1,5 +1,5 @@
 import { StylesheetDetails } from '../..';
-import { DataSourceResponse, UmbDataSource } from '@umbraco-cms/backoffice/repository';
+import { DataSourceResponse, UmbDetailDataSource } from '@umbraco-cms/backoffice/repository';
 import { UmbControllerHostElement } from '@umbraco-cms/backoffice/controller';
 
 /**
@@ -8,7 +8,7 @@ import { UmbControllerHostElement } from '@umbraco-cms/backoffice/controller';
  * @class UmbStylesheetServerDataSource
  * @implements {UmbStylesheetServerDataSource}
  */
-export class UmbStylesheetServerDataSource implements UmbDataSource<any, any, StylesheetDetails> {
+export class UmbStylesheetServerDataSource implements UmbDetailDataSource<any, any, StylesheetDetails> {
 	#host: UmbControllerHostElement;
 
 	/**

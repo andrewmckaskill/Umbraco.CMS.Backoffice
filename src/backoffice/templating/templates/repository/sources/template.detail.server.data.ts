@@ -7,7 +7,7 @@ import {
 } from '@umbraco-cms/backoffice/backend-api';
 import type { UmbControllerHostElement } from '@umbraco-cms/backoffice/controller';
 import { tryExecuteAndNotify } from '@umbraco-cms/backoffice/resources';
-import type { UmbDataSource } from '@umbraco-cms/backoffice/repository';
+import type { UmbDetailDataSource } from '@umbraco-cms/backoffice/repository';
 
 /**
  * A data source for the Template detail that fetches data from the server
@@ -16,7 +16,7 @@ import type { UmbDataSource } from '@umbraco-cms/backoffice/repository';
  * @implements {TemplateDetailDataSource}
  */
 export class UmbTemplateDetailServerDataSource
-	implements UmbDataSource<CreateTemplateRequestModel, UpdateTemplateRequestModel, TemplateResponseModel>
+	implements UmbDetailDataSource<CreateTemplateRequestModel, UpdateTemplateRequestModel, TemplateResponseModel>
 {
 	#host: UmbControllerHostElement;
 

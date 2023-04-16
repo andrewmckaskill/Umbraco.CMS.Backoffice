@@ -1,4 +1,4 @@
-import { UmbDataSource } from '@umbraco-cms/backoffice/repository';
+import { UmbDetailDataSource } from '@umbraco-cms/backoffice/repository';
 import {
 	ProblemDetailsModel,
 	RelationTypeResource,
@@ -16,7 +16,8 @@ import { tryExecuteAndNotify } from '@umbraco-cms/backoffice/resources';
  * @implements {RepositoryDetailDataSource}
  */
 export class UmbRelationTypeServerDataSource
-	implements UmbDataSource<CreateRelationTypeRequestModel, UpdateRelationTypeRequestModel, RelationTypeResponseModel>
+	implements
+		UmbDetailDataSource<CreateRelationTypeRequestModel, UpdateRelationTypeRequestModel, RelationTypeResponseModel>
 {
 	#host: UmbControllerHostElement;
 

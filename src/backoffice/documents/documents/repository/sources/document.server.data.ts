@@ -1,5 +1,5 @@
 import { v4 as uuidv4 } from 'uuid';
-import { UmbDataSource } from '@umbraco-cms/backoffice/repository';
+import { UmbDetailDataSource } from '@umbraco-cms/backoffice/repository';
 import {
 	DocumentResource,
 	ProblemDetailsModel,
@@ -18,7 +18,7 @@ import { tryExecuteAndNotify } from '@umbraco-cms/backoffice/resources';
  * @implements {RepositoryDetailDataSource}
  */
 export class UmbDocumentServerDataSource
-	implements UmbDataSource<CreateDocumentRequestModel, UpdateDocumentRequestModel, DocumentResponseModel>
+	implements UmbDetailDataSource<CreateDocumentRequestModel, UpdateDocumentRequestModel, DocumentResponseModel>
 {
 	#host: UmbControllerHostElement;
 

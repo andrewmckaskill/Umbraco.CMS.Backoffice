@@ -10,7 +10,7 @@ import {
 	ProblemDetailsModel,
 	UpdateDictionaryItemRequestModel,
 } from '@umbraco-cms/backoffice/backend-api';
-import { UmbDataSource } from '@umbraco-cms/backoffice/repository';
+import { UmbDetailDataSource } from '@umbraco-cms/backoffice/repository';
 
 /**
  * @description - A data source for the Dictionary detail that fetches data from the server
@@ -20,7 +20,11 @@ import { UmbDataSource } from '@umbraco-cms/backoffice/repository';
  */
 export class UmbDictionaryDetailServerDataSource
 	implements
-		UmbDataSource<CreateDictionaryItemRequestModel, UpdateDictionaryItemRequestModel, DictionaryItemResponseModel>
+		UmbDetailDataSource<
+			CreateDictionaryItemRequestModel,
+			UpdateDictionaryItemRequestModel,
+			DictionaryItemResponseModel
+		>
 {
 	#host: UmbControllerHostElement;
 

@@ -6,7 +6,7 @@ import {
 } from '@umbraco-cms/backoffice/backend-api';
 import { UmbControllerHostElement } from '@umbraco-cms/backoffice/controller';
 import { tryExecuteAndNotify } from '@umbraco-cms/backoffice/resources';
-import { UmbDataSource } from '@umbraco-cms/backoffice/repository';
+import { UmbDetailDataSource } from '@umbraco-cms/backoffice/repository';
 
 /**
  * A data source for the Language that fetches data from the server
@@ -15,7 +15,7 @@ import { UmbDataSource } from '@umbraco-cms/backoffice/repository';
  * @implements {RepositoryDetailDataSource}
  */
 export class UmbLanguageServerDataSource
-	implements UmbDataSource<CreateLanguageRequestModel, any, LanguageResponseModel>
+	implements UmbDetailDataSource<CreateLanguageRequestModel, any, LanguageResponseModel>
 {
 	#host: UmbControllerHostElement;
 

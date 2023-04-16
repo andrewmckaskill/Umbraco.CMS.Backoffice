@@ -1,5 +1,5 @@
 import type { MediaDetails } from '../../';
-import { UmbDataSource } from '@umbraco-cms/backoffice/repository';
+import { UmbDetailDataSource } from '@umbraco-cms/backoffice/repository';
 import {
 	CreateMediaRequestModel,
 	ProblemDetailsModel,
@@ -15,7 +15,7 @@ import { tryExecuteAndNotify } from '@umbraco-cms/backoffice/resources';
  * @implements {TemplateDetailDataSource}
  */
 export class UmbMediaDetailServerDataSource
-	implements UmbDataSource<CreateMediaRequestModel, UpdateMediaRequestModel, MediaDetails>
+	implements UmbDetailDataSource<CreateMediaRequestModel, UpdateMediaRequestModel, MediaDetails>
 {
 	#host: UmbControllerHostElement;
 

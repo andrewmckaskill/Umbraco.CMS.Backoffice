@@ -1,5 +1,5 @@
 import { v4 as uuidv4 } from 'uuid';
-import { UmbDataSource } from '@umbraco-cms/backoffice/repository';
+import { UmbDetailDataSource } from '@umbraco-cms/backoffice/repository';
 import {
 	DataTypeResource,
 	DataTypeResponseModel,
@@ -17,7 +17,7 @@ import { tryExecuteAndNotify } from '@umbraco-cms/backoffice/resources';
  * @implements {RepositoryDetailDataSource}
  */
 export class UmbDataTypeServerDataSource
-	implements UmbDataSource<CreateDataTypeRequestModel, UpdateDataTypeRequestModel, DataTypeResponseModel>
+	implements UmbDetailDataSource<CreateDataTypeRequestModel, UpdateDataTypeRequestModel, DataTypeResponseModel>
 {
 	#host: UmbControllerHostElement;
 

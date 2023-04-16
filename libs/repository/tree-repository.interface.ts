@@ -1,10 +1,6 @@
 import type { Observable } from 'rxjs';
+import { UmbPagedData } from './paged-data.interface';
 import { ProblemDetailsModel } from '@umbraco-cms/backoffice/backend-api';
-
-export interface UmbPagedData<T> {
-	total: number;
-	items: Array<T>;
-}
 
 export interface UmbTreeRepository<ItemType = any, PagedItemType = UmbPagedData<ItemType>> {
 	requestRootTreeItems: () => Promise<{
