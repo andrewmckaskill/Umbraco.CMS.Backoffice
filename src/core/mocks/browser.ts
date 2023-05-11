@@ -16,3 +16,14 @@ export const startMockServiceWorker = () =>
 		onUnhandledRequest,
 		//quiet: import.meta.env.VITE_MSW_QUIET === 'on',
 	});
+
+// TODO: declare global type for window.MockServiceWorker
+/*
+declare global {
+	interface Window {
+		MockServiceWorker: {};
+	}
+}
+
+window.MockServiceWorker = window.MockServiceWorker || {};
+*/
