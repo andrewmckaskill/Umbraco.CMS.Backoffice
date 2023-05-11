@@ -11,6 +11,10 @@ import { umbExtensionsRegistry } from '@umbraco-cms/backoffice/extensions-api';
 import { UmbEntryPointExtensionInitializer } from '@umbraco-cms/backoffice/extensions-registry';
 import { UmbLitElement } from '@umbraco-cms/internal/lit-element';
 
+// TODO: when inserting the backoffice component directly the router slots are not rendered. Remove this when we have a core component we can import
+import '../core/router/router-slot.element';
+import '../core/router/variant-router-slot.element';
+
 const CORE_PACKAGES = [
 	import('./core/umbraco-package'),
 	//import('./settings/umbraco-package'),
