@@ -57,7 +57,7 @@
 			"@umbraco-cms/internal/test-utils": ["utils/test-utils.ts"]
 		}
 	},
-	"include": ["src/**/*.ts", "apps/**/*.ts", "libs/**/*.ts", "e2e/**/*.ts", "index.ts", "index2.ts"],
+	"include": ["src/**/*.ts", "apps/**/*.ts", "libs/**/*.ts", "e2e/**/*.ts", "index.ts", "index2.ts", "importmap.ts"],
 	"references": [
 		{
 			"path": "./tsconfig.node.json"
