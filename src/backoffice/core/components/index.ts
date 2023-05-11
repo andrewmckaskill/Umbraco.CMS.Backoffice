@@ -70,7 +70,7 @@ import './workspace-property/workspace-property.element';
 
 import './variant-selector/variant-selector.element';
 
-import './code-editor';
+//import './code-editor';
 
 export * from './table';
 
