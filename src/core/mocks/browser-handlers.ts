@@ -32,6 +32,7 @@ import { handlers as stylesheetHandlers } from './domains/stylesheet.handlers';
 import { handlers as tagHandlers } from './domains/tag-handlers';
 
 const handlers = [
+	...dataTypeHandlers,
 	serverHandlers.serverVersionHandler,
 	...installHandlers,
 	...upgradeHandlers,
@@ -65,6 +66,7 @@ const handlers = [
 	...tagHandlers,
 ];
 
+/*
 switch (import.meta.env.VITE_UMBRACO_INSTALL_STATUS) {
 	case 'must-install':
 		handlers.push(serverHandlers.serverMustInstallHandler);
@@ -84,5 +86,9 @@ switch (import.meta.env.VITE_UMBRACO_EXTENSION_MOCKS) {
 	default:
 		handlers.push(manifestsHandlers.manifestEmptyHandler);
 }
+*/
+
+handlers.push(serverHandlers.serverRunningHandler);
+handlers.push(manifestsHandlers.manifestDevelopmentHandler);
 
 export { handlers };

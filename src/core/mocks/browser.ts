@@ -1,4 +1,5 @@
-import { MockedRequest, setupWorker } from 'msw';
+const { setupWorker } = window.MockServiceWorker;
+import type { MockedRequest } from 'msw';
 import { handlers } from './browser-handlers';
 import { umbracoPath } from '@umbraco-cms/backoffice/utils';
 
@@ -13,5 +14,5 @@ export const onUnhandledRequest = (req: MockedRequest) => {
 export const startMockServiceWorker = () =>
 	worker.start({
 		onUnhandledRequest,
-		quiet: import.meta.env.VITE_MSW_QUIET === 'on',
+		//quiet: import.meta.env.VITE_MSW_QUIET === 'on',
 	});
