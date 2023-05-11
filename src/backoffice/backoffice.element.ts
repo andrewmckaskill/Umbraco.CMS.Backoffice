@@ -17,17 +17,17 @@ import '../core/router/variant-router-slot.element';
 
 const CORE_PACKAGES = [
 	import('./core/umbraco-package'),
-	//import('./settings/umbraco-package'),
-	//import('./documents/umbraco-package'),
-	//import('./media/umbraco-package'),
-	//import('./members/umbraco-package'),
-	//import('./translation/umbraco-package'),
-	//import('./users/umbraco-package'),
-	//import('./packages/umbraco-package'),
-	//import('./search/umbraco-package'),
-	//import('./templating/umbraco-package'),
-	//import('./umbraco-news/umbraco-package'),
-	//import('./tags/umbraco-package'),
+	import('./settings/umbraco-package'),
+	import('./documents/umbraco-package'),
+	import('./media/umbraco-package'),
+	import('./members/umbraco-package'),
+	import('./translation/umbraco-package'),
+	import('./users/umbraco-package'),
+	import('./packages/umbraco-package'),
+	import('./search/umbraco-package'),
+	import('./templating/umbraco-package'),
+	import('./umbraco-news/umbraco-package'),
+	import('./tags/umbraco-package'),
 ];
 
 @defineElement('umb-backoffice')
