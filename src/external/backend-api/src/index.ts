@@ -11,6 +11,7 @@ export type { AuditLogBaseModel } from './models/AuditLogBaseModel';
 export type { AuditLogResponseModel } from './models/AuditLogResponseModel';
 export type { AuditLogWithUsernameResponseModel } from './models/AuditLogWithUsernameResponseModel';
 export { AuditTypeModel } from './models/AuditTypeModel';
+export type { BackgroundJobPresentationModel } from './models/BackgroundJobPresentationModel';
 export type { ChangePasswordUserRequestModel } from './models/ChangePasswordUserRequestModel';
 export type { ConsentLevelPresentationModel } from './models/ConsentLevelPresentationModel';
 export type { ContentResponseModelBaseDocumentValueModelDocumentVariantResponseModel } from './models/ContentResponseModelBaseDocumentValueModelDocumentVariantResponseModel';
@@ -155,6 +156,7 @@ export type { PackageMigrationStatusResponseModel } from './models/PackageMigrat
 export type { PackageModelBaseModel } from './models/PackageModelBaseModel';
 export type { PagedAuditLogResponseModel } from './models/PagedAuditLogResponseModel';
 export type { PagedAuditLogWithUsernameResponseModel } from './models/PagedAuditLogWithUsernameResponseModel';
+export type { PagedBackgroundJobPresentationModel } from './models/PagedBackgroundJobPresentationModel';
 export type { PagedCultureReponseModel } from './models/PagedCultureReponseModel';
 export type { PagedDataTypeTreeItemResponseModel } from './models/PagedDataTypeTreeItemResponseModel';
 export type { PagedDictionaryOverviewResponseModel } from './models/PagedDictionaryOverviewResponseModel';
@@ -311,6 +313,7 @@ export type { VerifyInviteUserRequestModel } from './models/VerifyInviteUserRequ
 export type { VersionResponseModel } from './models/VersionResponseModel';
 
 export { AuditLogResource } from './services/AuditLogResource';
+export { BackgroundJobResource } from './services/BackgroundJobResource';
 export { CultureResource } from './services/CultureResource';
 export { DataTypeResource } from './services/DataTypeResource';
 export { DictionaryResource } from './services/DictionaryResource';
