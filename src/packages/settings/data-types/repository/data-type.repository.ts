@@ -202,10 +202,10 @@ export class UmbDataTypeRepository
 		const { error } = await this.#detailSource.insert(dataType);
 
 		if (!error) {
-			// TODO: We need to push a new item to the tree store to update the tree. How do we want to create the tree items?
-			const treeItem = createTreeItem(dataType);
-			this.#treeStore?.appendItems([treeItem]);
-			//this.#detailStore?.append(dataType);
+			// TODO: is it really necessary to request the data type again?
+			const { data } = await this.requestById(dataType.id);
+			if (!data) throw new Error('Could not find created data type');
+			this.#detailStore?.append(data);
 
 			const notification = { data: { message: `Data Type created` } };
 			this.#notificationContext?.peek('positive', notification);
@@ -222,14 +222,7 @@ export class UmbDataTypeRepository
 		const { error } = await this.#detailSource.update(id, updatedDataType);
 
 		if (!error) {
-			// TODO: we currently don't use the detail store for anything.
-			// Consider to look up the data before fetching from the server
-			// Consider notify a workspace if a template is updated in the store while someone is editing it.
-			// TODO: would be nice to align the stores on methods/methodNames.
-			// this.#detailStore?.append(dataType);
-			// TODO: This is parsing on the full models to the tree and item store. Those should only contain the data they need. I don't know, at this point, if thats a repository or store responsibility.
-			this.#treeStore?.updateItem(id, updatedDataType);
-			this.#itemStore?.updateItem(id, updatedDataType);
+			this.#detailStore?.updateItem(id, updatedDataType);
 
 			const notification = { data: { message: `Data Type saved` } };
 			this.#notificationContext?.peek('positive', notification);
@@ -245,13 +238,8 @@ export class UmbDataTypeRepository
 		const { error } = await this.#detailSource.delete(id);
 
 		if (!error) {
-			// TODO: we currently don't use the detail store for anything.
-			// Consider to look up the data before fetching from the server.
 			// Consider notify a workspace if a template is deleted from the store while someone is editing it.
-			// TODO: would be nice to align the stores on methods/methodNames.
-			this.#detailStore?.remove([id]);
-			this.#treeStore?.removeItem(id);
-			this.#itemStore?.removeItem(id);
+			this.#detailStore?.removeItem(id);
 
 			const notification = { data: { message: `Data Type deleted` } };
 			this.#notificationContext?.peek('positive', notification);
