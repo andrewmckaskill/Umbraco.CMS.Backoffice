@@ -19,12 +19,22 @@ export class UmbStoreBase<StoreItemType = any> implements UmbStore<StoreItemType
 	}
 
 	/**
+	 *
+	 * @memberof UmbStoreBase
+	 */
+	public events = new EventTarget();
+
+	/**
 	 * Append an item to the store
 	 * @param {StoreItemType} item
 	 * @memberof UmbStoreBase
 	 */
 	append(item: StoreItemType) {
 		this._data.append([item]);
+		const unique = this._data.getUnique(item);
+		this.events.dispatchEvent(
+			new CustomEvent('append', { bubbles: false, composed: false, detail: { uniques: [unique] } }),
+		);
 	}
 
 	/**
@@ -34,6 +44,8 @@ export class UmbStoreBase<StoreItemType = any> implements UmbStore<StoreItemType
 	 */
 	appendItems(items: Array<StoreItemType>) {
 		this._data.append(items);
+		const uniques = items.map((item) => this._data.getUnique(item));
+		this.events.dispatchEvent(new CustomEvent('append', { bubbles: false, composed: false, detail: { uniques } }));
 	}
 
 	/**
@@ -44,6 +56,9 @@ export class UmbStoreBase<StoreItemType = any> implements UmbStore<StoreItemType
 	 */
 	updateItem(unique: string, data: Partial<StoreItemType>) {
 		this._data.updateOne(unique, data);
+		this.events.dispatchEvent(
+			new CustomEvent('update', { bubbles: false, composed: false, detail: { uniques: [unique] } }),
+		);
 	}
 
 	/**
@@ -53,6 +68,9 @@ export class UmbStoreBase<StoreItemType = any> implements UmbStore<StoreItemType
 	 */
 	removeItem(unique: string) {
 		this._data.removeOne(unique);
+		this.events.dispatchEvent(
+			new CustomEvent('remove', { bubbles: false, composed: false, detail: { uniques: [unique] } }),
+		);
 	}
 
 	/**
@@ -62,5 +80,6 @@ export class UmbStoreBase<StoreItemType = any> implements UmbStore<StoreItemType
 	 */
 	removeItems(uniques: Array<string>) {
 		this._data.remove(uniques);
+		this.events.dispatchEvent(new CustomEvent('remove', { bubbles: false, composed: false, detail: { uniques } }));
 	}
 }
