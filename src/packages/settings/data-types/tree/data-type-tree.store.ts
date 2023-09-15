@@ -1,9 +1,5 @@
 import { UMB_DATA_TYPE_STORE_CONTEXT_TOKEN, type UmbDataTypeStore } from '../repository/data-type.store.js';
-import {
-	DataTypeResponseModel,
-	DataTypeTreeItemResponseModel,
-	FolderTreeItemResponseModel,
-} from '@umbraco-cms/backoffice/backend-api';
+import { DataTypeResponseModel, DataTypeTreeItemResponseModel } from '@umbraco-cms/backoffice/backend-api';
 import { UmbContextConsumerController, UmbContextToken } from '@umbraco-cms/backoffice/context-api';
 import { UmbControllerHostElement } from '@umbraco-cms/backoffice/controller-api';
 import {
