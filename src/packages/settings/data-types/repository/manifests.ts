@@ -1,5 +1,5 @@
 import { UmbDataTypeRepository } from './data-type.repository.js';
-import { UmbDataTypeTreeRepository } from './data-type-tree.repository.js';
+import { UmbDataTypeTreeRepository } from '../tree/data-type-tree.repository.js';
 import { UmbDataTypeItemStore } from './data-type-item.store.js';
 import { UmbDataTypeStore } from './data-type.store.js';
 import { UmbDataTypeTreeStore } from '../tree/data-type.tree.store.js';
