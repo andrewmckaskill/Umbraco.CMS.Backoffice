@@ -1,4 +1,5 @@
 import { UmbDataTypeRepository } from './data-type.repository.js';
+import { UmbDataTypeTreeRepository } from './data-type-tree.repository.js';
 import { UmbDataTypeItemStore } from './data-type-item.store.js';
 import { UmbDataTypeStore } from './data-type.store.js';
 import { UmbDataTypeTreeStore } from './data-type.tree.store.js';
@@ -10,12 +11,20 @@ import type {
 } from '@umbraco-cms/backoffice/extension-registry';
 
 export const DATA_TYPE_REPOSITORY_ALIAS = 'Umb.Repository.DataType';
+export const DATA_TYPE_TREE_REPOSITORY_ALIAS = 'Umb.Repository.DataTypeTree';
 
 const repository: ManifestRepository = {
 	type: 'repository',
 	alias: DATA_TYPE_REPOSITORY_ALIAS,
 	name: 'Data Type Repository',
 	class: UmbDataTypeRepository,
+};
+
+const treeRepository: ManifestRepository = {
+	type: 'repository',
+	alias: DATA_TYPE_TREE_REPOSITORY_ALIAS,
+	name: 'Data Type Tree Repository',
+	class: UmbDataTypeTreeRepository,
 };
 
 export const DATA_TYPE_STORE_ALIAS = 'Umb.Store.DataType';
@@ -43,4 +52,4 @@ const itemStore: ManifestItemStore = {
 	class: UmbDataTypeItemStore,
 };
 
-export const manifests = [repository, store, treeStore, itemStore];
+export const manifests = [repository, treeRepository, store, treeStore, itemStore];

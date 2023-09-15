@@ -1,5 +1,3 @@
-import { DATA_TYPE_ROOT_ENTITY_TYPE } from '../entities.js';
-import { UmbDataTypeTreeServerDataSource } from './sources/data-type.tree.server.data.js';
 import { UmbDataTypeMoveServerDataSource } from './sources/data-type-move.server.data.js';
 import { UmbDataTypeStore, UMB_DATA_TYPE_STORE_CONTEXT_TOKEN } from './data-type.store.js';
 import { UmbDataTypeServerDataSource } from './sources/data-type.server.data.js';
@@ -9,13 +7,11 @@ import { UmbDataTypeItemServerDataSource } from './sources/data-type-item.server
 import { UMB_DATA_TYPE_ITEM_STORE_CONTEXT_TOKEN, UmbDataTypeItemStore } from './data-type-item.store.js';
 import { UmbDataTypeCopyServerDataSource } from './sources/data-type-copy.server.data.js';
 import type {
-	UmbTreeRepository,
 	UmbDetailRepository,
 	UmbItemRepository,
 	UmbFolderRepository,
 	UmbMoveRepository,
 	UmbCopyRepository,
-	UmbTreeDataSource,
 	UmbDataSource,
 	UmbFolderDataSource,
 	UmbItemDataSource,
@@ -37,7 +33,6 @@ import { UmbNotificationContext, UMB_NOTIFICATION_CONTEXT_TOKEN } from '@umbraco
 export class UmbDataTypeRepository
 	implements
 		UmbItemRepository<DataTypeItemResponseModel>,
-		UmbTreeRepository<FolderTreeItemResponseModel>,
 		UmbDetailRepository<CreateDataTypeRequestModel, any, UpdateDataTypeRequestModel, DataTypeResponseModel>,
 		UmbFolderRepository,
 		UmbMoveRepository,
@@ -47,7 +42,6 @@ export class UmbDataTypeRepository
 
 	#host: UmbControllerHostElement;
 
-	#treeSource: UmbTreeDataSource<FolderTreeItemResponseModel>;
 	#detailSource: UmbDataSource<CreateDataTypeRequestModel, any, UpdateDataTypeRequestModel, DataTypeResponseModel>;
 	#folderSource: UmbFolderDataSource;
 	#itemSource: UmbItemDataSource<DataTypeItemResponseModel>;
@@ -64,7 +58,6 @@ export class UmbDataTypeRepository
 		this.#host = host;
 
 		// TODO: figure out how spin up get the correct data source
-		this.#treeSource = new UmbDataTypeTreeServerDataSource(this.#host);
 		this.#detailSource = new UmbDataTypeServerDataSource(this.#host);
 		this.#folderSource = new UmbDataTypeFolderServerDataSource(this.#host);
 		this.#itemSource = new UmbDataTypeItemServerDataSource(this.#host);
@@ -89,57 +82,6 @@ export class UmbDataTypeRepository
 				this.#notificationContext = instance;
 			}).asPromise(),
 		]);
-	}
-
-	// TREE:
-	async requestTreeRoot() {
-		await this.#init;
-
-		const data = {
-			id: null,
-			type: DATA_TYPE_ROOT_ENTITY_TYPE,
-			name: 'Data Types',
-			icon: 'umb:folder',
-			hasChildren: true,
-		};
-
-		return { data };
-	}
-
-	async requestRootTreeItems() {
-		await this.#init;
-
-		const { data, error } = await this.#treeSource.getRootItems();
-
-		if (data) {
-			this.#treeStore?.appendItems(data.items);
-		}
-
-		return { data, error, asObservable: () => this.#treeStore!.rootItems };
-	}
-
-	async requestTreeItemsOf(parentId: string | null) {
-		await this.#init;
-		if (parentId === undefined) throw new Error('Parent id is missing');
-
-		const { data, error } = await this.#treeSource.getChildrenOf(parentId);
-
-		if (data) {
-			this.#treeStore?.appendItems(data.items);
-		}
-
-		return { data, error, asObservable: () => this.#treeStore!.childrenOf(parentId) };
-	}
-
-	async rootTreeItems() {
-		await this.#init;
-		return this.#treeStore!.rootItems;
-	}
-
-	async treeItemsOf(parentId: string | null) {
-		if (parentId === undefined) throw new Error('Parent id is missing');
-		await this.#init;
-		return this.#treeStore!.childrenOf(parentId);
 	}
 
 	// ITEMS:
