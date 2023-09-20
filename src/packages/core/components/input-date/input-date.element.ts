@@ -1,5 +1,5 @@
-import { UmbConfigRepository } from '../../repositories/config/config.repository.js';
-import { css, html, ifDefined, customElement, property, state } from '@umbraco-cms/backoffice/external/lit';
+import { UmbServerConfigRepository } from '../../repositories/config/config.repository.js';
+import { html, ifDefined, customElement, property, state } from '@umbraco-cms/backoffice/external/lit';
 import { FormControlMixin, UUIInputEvent } from '@umbraco-cms/backoffice/external/uui';
 import { UmbLitElement } from '@umbraco-cms/internal/lit-element';
 
@@ -36,7 +36,7 @@ export class UmbInputDateElement extends FormControlMixin(UmbLitElement) {
 	@property({ type: Number })
 	step?: number;
 
-	private _configRepository = new UmbConfigRepository(this);
+	#configRepository = new UmbServerConfigRepository(this);
 
 	constructor() {
 		super();
@@ -48,7 +48,7 @@ export class UmbInputDateElement extends FormControlMixin(UmbLitElement) {
 	}
 
 	async #getOffset() {
-		const data = await this._configRepository.getServertimeOffset();
+		const data = await this.#configRepository.getServertimeOffset();
 		if (!data) return;
 		this._offsetValue = data.offset;
 
@@ -98,7 +98,7 @@ export class UmbInputDateElement extends FormControlMixin(UmbLitElement) {
 		if (this.type === 'time') {
 			const newDate = new Date(`${new Date().toJSON().slice(0, 10)} ${d}`);
 			const dateOffset = new Date(
-				newDate.setTime(newDate.getTime() + (utc ? this._offsetValue * -1 : this._offsetValue) * 60 * 1000)
+				newDate.setTime(newDate.getTime() + (utc ? this._offsetValue * -1 : this._offsetValue) * 60 * 1000),
 			);
 			const time = dateOffset
 				.toLocaleTimeString(undefined, {
@@ -109,7 +109,7 @@ export class UmbInputDateElement extends FormControlMixin(UmbLitElement) {
 		} else {
 			const newDate = new Date(d.replace('Z', ''));
 			const dateOffset = new Date(
-				newDate.setTime(newDate.getTime() + (utc ? this._offsetValue * -1 : this._offsetValue) * 60 * 1000)
+				newDate.setTime(newDate.getTime() + (utc ? this._offsetValue * -1 : this._offsetValue) * 60 * 1000),
 			);
 			return this.type === 'datetime-local'
 				? this.#dateToString(dateOffset)

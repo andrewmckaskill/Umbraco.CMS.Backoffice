@@ -3,7 +3,7 @@ import type { ServertimeOffset } from '@umbraco-cms/backoffice/models';
 import { tryExecuteAndNotify } from '@umbraco-cms/backoffice/resources';
 import { umbracoPath } from '@umbraco-cms/backoffice/utils';
 
-export class UmbConfigRepository {
+export class UmbServerConfigRepository {
 	#host;
 
 	constructor(host: UmbControllerHostElement) {
