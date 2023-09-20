@@ -1,4 +1,4 @@
-import { UmbServerConfigRepository } from '../../repositories/server-config/config.repository.js';
+import { UmbServerConfigRepository } from '../../repositories/server-config/server-config.repository.js';
 import { html, ifDefined, customElement, property, state } from '@umbraco-cms/backoffice/external/lit';
 import { FormControlMixin, UUIInputEvent } from '@umbraco-cms/backoffice/external/uui';
 import { UmbLitElement } from '@umbraco-cms/internal/lit-element';
