@@ -2,7 +2,7 @@ import { html, customElement, property, state } from '@umbraco-cms/backoffice/ex
 import { UUIColorSwatchesEvent } from '@umbraco-cms/backoffice/external/uui';
 import { UmbPropertyEditorExtensionElement } from '@umbraco-cms/backoffice/extension-registry';
 import { UmbLitElement } from '@umbraco-cms/internal/lit-element';
-import type { UmbSwatchDetails } from '@umbraco-cms/backoffice/models';
+import type { UmbSwatchDetails } from '@umbraco-cms/backoffice/components';
 import type { UmbPropertyEditorConfigCollection } from '@umbraco-cms/backoffice/property-editor';
 
 /**

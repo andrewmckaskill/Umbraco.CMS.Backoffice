@@ -4,10 +4,6 @@ export type UmbEntityBase = {
 	name?: string;
 };
 
-export interface UmbSwatchDetails {
-	label: string;
-	value: string;
-}
 export interface ServertimeOffset {
 	/**
 	 * offset in minutes relative to UTC
