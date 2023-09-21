@@ -3,10 +3,3 @@ export type UmbEntityBase = {
 	id?: string;
 	name?: string;
 };
-
-export interface ServertimeOffset {
-	/**
-	 * offset in minutes relative to UTC
-	 */
-	offset: number;
-}

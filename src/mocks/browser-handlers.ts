@@ -30,7 +30,6 @@ import { handlers as rteEmbedHandlers } from './handlers/rte-embed.handlers.js';
 import { handlers as stylesheetHandlers } from './handlers/stylesheet.handlers.js';
 import { handlers as partialViewsHandlers } from './handlers/partial-views.handlers.js';
 import { handlers as tagHandlers } from './handlers/tag-handlers.js';
-import { handlers as configHandlers } from './handlers/config.handlers.js';
 import { handlers as scriptHandlers } from './handlers/scripts.handlers.js';
 
 const handlers = [
@@ -65,7 +64,6 @@ const handlers = [
 	...stylesheetHandlers,
 	...partialViewsHandlers,
 	...tagHandlers,
-	...configHandlers,
 	...scriptHandlers,
 ];
 

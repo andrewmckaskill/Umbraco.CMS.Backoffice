@@ -1,5 +1,4 @@
-import { UmbServerConfigRepository } from '../../repositories/server-config/server-config.repository.js';
-import { html, ifDefined, customElement, property, state } from '@umbraco-cms/backoffice/external/lit';
+import { html, ifDefined, customElement, property } from '@umbraco-cms/backoffice/external/lit';
 import { FormControlMixin, UUIInputEvent } from '@umbraco-cms/backoffice/external/uui';
 import { UmbLitElement } from '@umbraco-cms/internal/lit-element';
 
@@ -21,12 +20,6 @@ export class UmbInputDateElement extends FormControlMixin(UmbLitElement) {
 	@property({ type: String })
 	displayValue?: string;
 
-	@property({ type: Boolean })
-	offsetTime = false;
-
-	@state()
-	private _offsetValue = 0;
-
 	@property({ type: String })
 	min?: string;
 
@@ -36,24 +29,13 @@ export class UmbInputDateElement extends FormControlMixin(UmbLitElement) {
 	@property({ type: Number })
 	step?: number;
 
-	#configRepository = new UmbServerConfigRepository(this);
-
 	constructor() {
 		super();
 	}
 
 	connectedCallback(): void {
 		super.connectedCallback();
-		this.offsetTime ? this.#getOffset() : (this.displayValue = this.#UTCToLocal(this.value as string));
-	}
-
-	async #getOffset() {
-		const data = await this.#configRepository.getServertimeOffset();
-		if (!data) return;
-		this._offsetValue = data.offset;
-
-		if (!this.value) return;
-		this.displayValue = this.#valueToServerOffset(this.value as string, true);
+		this.displayValue = this.#UTCToLocal(this.value as string);
 	}
 
 	#localToUTC(d: string) {
@@ -94,29 +76,6 @@ export class UmbInputDateElement extends FormControlMixin(UmbLitElement) {
 		).slice(-2)}:${('0' + date.getMinutes()).slice(-2)}:${('0' + date.getSeconds()).slice(-2)}`;
 	}
 
-	#valueToServerOffset(d: string, utc = false) {
-		if (this.type === 'time') {
-			const newDate = new Date(`${new Date().toJSON().slice(0, 10)} ${d}`);
-			const dateOffset = new Date(
-				newDate.setTime(newDate.getTime() + (utc ? this._offsetValue * -1 : this._offsetValue) * 60 * 1000),
-			);
-			const time = dateOffset
-				.toLocaleTimeString(undefined, {
-					hourCycle: 'h23',
-				})
-				.slice(0, 5);
-			return time;
-		} else {
-			const newDate = new Date(d.replace('Z', ''));
-			const dateOffset = new Date(
-				newDate.setTime(newDate.getTime() + (utc ? this._offsetValue * -1 : this._offsetValue) * 60 * 1000),
-			);
-			return this.type === 'datetime-local'
-				? this.#dateToString(dateOffset)
-				: this.#dateToString(dateOffset).slice(0, 10);
-		}
-	}
-
 	#onChange(e: UUIInputEvent) {
 		e.stopPropagation();
 		const picked = e.target.value as string;
@@ -125,7 +84,7 @@ export class UmbInputDateElement extends FormControlMixin(UmbLitElement) {
 			this.displayValue = '';
 			return;
 		}
-		this.value = this.offsetTime ? this.#valueToServerOffset(picked) : this.#localToUTC(picked);
+		this.value = this.#localToUTC(picked);
 		this.displayValue = picked;
 		this.dispatchEvent(new CustomEvent('change'));
 	}
