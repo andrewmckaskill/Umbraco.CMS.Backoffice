@@ -14,14 +14,14 @@ const treeRepository: ManifestRepository = {
 	type: 'repository',
 	alias: DATA_TYPE_TREE_REPOSITORY_ALIAS,
 	name: 'Data Type Tree Repository',
-	class: UmbDataTypeTreeRepository,
+	api: UmbDataTypeTreeRepository,
 };
 
 const treeStore: ManifestTreeStore = {
 	type: 'treeStore',
 	alias: DATA_TYPE_TREE_STORE_ALIAS,
 	name: 'Data Type Tree Store',
-	class: UmbDataTypeTreeStore,
+	api: UmbDataTypeTreeStore,
 };
 
 const tree: ManifestTree = {
