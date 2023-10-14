@@ -9,7 +9,7 @@ const repository: ManifestRepository = {
 	type: 'repository',
 	alias: DATA_TYPE_REPOSITORY_ALIAS,
 	name: 'Data Type Repository',
-	class: UmbDataTypeRepository,
+	api: UmbDataTypeRepository,
 };
 
 export const DATA_TYPE_STORE_ALIAS = 'Umb.Store.DataType';
@@ -19,14 +19,14 @@ const store: ManifestStore = {
 	type: 'store',
 	alias: DATA_TYPE_STORE_ALIAS,
 	name: 'Data Type Store',
-	class: UmbDataTypeStore,
+	api: UmbDataTypeStore,
 };
 
 const itemStore: ManifestItemStore = {
 	type: 'itemStore',
 	alias: DATA_TYPE_ITEM_STORE_ALIAS,
 	name: 'Data Type Item Store',
-	class: UmbDataTypeItemStore,
+	api: UmbDataTypeItemStore,
 };
 
 export const manifests = [repository, store, itemStore];
